@@ -1,16 +1,27 @@
-def function1(a):
-    b = dict()
-    for c in a:
-        if c not in b:
-            b[c] = 1
+def count_nts(seq):
+    '''
+    Returns a dictionary of counts of nucleotides.
+    Params:
+        seq: a sequence of nucleotides, or any string really.
+    '''
+    counts = dict()
+    for nt in seq:
+        if nt not in counts:
+            counts[nt] = 1
         else:
-            b[c] += 1
-    return b
+            counts[nt] += 1
+    return counts
 
-def function2(a):
+def calc_freq(counts):
+    '''
+    Calculates and displays to std out the frequencies of the characters/
+    nucleotides in the given sequence.
+    Params:
+        counts: dictionary of counts of characters.
+    '''
     print('freqs')
-    total = float(sum([a[b] for b in a.keys()]))
-    for b in a.keys():
-        print(b + ':' + str(a[b]/total))
+    total = float(sum([counts[nt] for nt in counts.keys()]))
+    for nt in counts.keys():
+        print(nt + ':' + str(counts[nt]/total))
 
-function2(function1('ATCTGACGCGCGCCGC'))
+calc_freq(count_nts('ATCTGACGCGCGCCGC'))
